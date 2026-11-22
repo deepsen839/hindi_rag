@@ -1,4 +1,4 @@
-# MegaMindz AI Solutions — Cross-Lingual Hindi RAG
+# AI Solutions — Cross-Lingual Hindi RAG
 
 A Docker-based Retrieval-Augmented Generation (RAG) project built over the supplied **Agni Ki Udaan Hindi study guide**. The system accepts Hindi and English questions, retrieves relevant Hindi evidence, generates grounded Hindi answers, and returns source citations.
 
@@ -94,7 +94,7 @@ A Docker-based Retrieval-Augmented Generation (RAG) project built over the suppl
 ## 3. Project structure
 
 ```text
-megamindz_complete/
+hindi_complete/
 ├── api.py
 ├── app.py
 ├── config.py
@@ -180,20 +180,8 @@ Log out and log back in (or start a new login session) before using Docker witho
 
 Run the commands from the project root, the directory containing `compose.yaml`.
 
-### Step 1 — Extract and enter the project
 
-```bash
-unzip megamindz_hindi_rag_complete.zip
-cd megamindz_complete
-```
-
-If the project directory is already extracted, just enter it:
-
-```bash
-cd ~/Desktop/megamindz_complete
-```
-
-### Step 2 — Create the environment file
+### Step 1 — Create the environment file
 
 ```bash
 cp .env.docker.example .env
@@ -219,7 +207,7 @@ MAX_NEW_TOKENS=128
 
 Ensure the PDF exists at the configured path inside the project. The provided Compose setup mounts the project into the tools container and mounts the configured persistent data locations into the API/UI containers.
 
-### Step 3 — Build the Docker image
+### Step 2 — Build the Docker image
 
 ```bash
 docker compose build
@@ -227,7 +215,7 @@ docker compose build
 
 **What happens during `docker compose build`:** Docker builds the image, installs OS/Python dependencies, and copies the project source. It does **not** automatically run PDF ingestion, create the ChromaDB index, run the six assignment questions, or execute evaluation scripts.
 
-### Step 4 — Ingest the PDF, build the index, and evaluate retrieval
+### Step 3 — Ingest the PDF, build the index, and evaluate retrieval
 
 ```bash
 docker compose --profile tools run --rm pipeline
@@ -243,7 +231,7 @@ python -m evaluation.evaluate_retrieval
 
 The `&&` in the Compose command means the next step runs only if the previous step succeeds. Run this pipeline again if the source PDF or relevant ingestion/index settings change.
 
-### Step 5 — Start the API
+### Step 4 — Start the API
 
 ```bash
 docker compose up -d api
@@ -270,7 +258,7 @@ http://localhost:8000/docs
 
 The API health response reports whether the retriever and generator have been loaded. The models are loaded lazily when the first applicable query arrives.
 
-### Step 6 — Send a Hindi query
+### Step 5 — Send a Hindi query
 
 ```bash
 curl -X POST http://localhost:8000/query \
@@ -278,7 +266,7 @@ curl -X POST http://localhost:8000/query \
   -d '{"question":"कलाम को भारत रत्न किस वर्ष प्राप्त हुआ?","top_k":5,"generate":true,"hybrid":true}'
 ```
 
-### Step 7 — Send an English cross-lingual query
+### Step 6 — Send an English cross-lingual query
 
 ```bash
 curl -X POST http://localhost:8000/query \
@@ -586,14 +574,14 @@ sudo docker info
 List running and stopped containers:
 
 ```bash
-docker ps -a --filter name=megamindz-hindi-rag-api
+docker ps -a --filter name=hindi-rag-api
 ```
 
 If the old container is confirmed to be from this project and is no longer needed, stop and remove it:
 
 ```bash
-docker stop megamindz-hindi-rag-api
-docker rm megamindz-hindi-rag-api
+docker stop hindi-rag-api
+docker rm hindi-rag-api
 ```
 
 Removing a container does not remove bind-mounted project files. Avoid deleting volumes unless you intend to remove their data.
@@ -711,7 +699,7 @@ For a one-off command, Docker prints the command's stdout/stderr in the terminal
 
 ---
 
-**Project:** MegaMindz AI Solutions — Cross-Lingual Hindi RAG  
+**Project:** AI Solutions — Cross-Lingual Hindi RAG  
 **Primary database:** ChromaDB  
 **Embedding model:** BAAI/bge-m3  
 **Generation model:** Qwen2.5-1.5B-Instruct  
