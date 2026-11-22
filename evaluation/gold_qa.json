@@ -1,0 +1,20 @@
+[
+  {"id":"g01","question":"Where was A.P.J. Abdul Kalam born and in which year?","gold_pages":[4],"evidence_terms":["रामेश्वरम","1931"]},
+  {"id":"g02","question":"What work did Kalam do as a child to help his family?","gold_pages":[4],"evidence_terms":["अख़बार"]},
+  {"id":"g03","question":"Which school did Kalam attend in Ramanathapuram?","gold_pages":[5],"evidence_terms":["श्वार्ट्ज़"]},
+  {"id":"g04","question":"Which teacher inspired Kalam's interest in flight?","gold_pages":[5],"evidence_terms":["पक्षियों","उड़ान"]},
+  {"id":"g05","question":"Where did Kalam study aeronautical engineering?","gold_pages":[6],"evidence_terms":["मद्रास इंस्टीट्यूट ऑफ टेक्नोलॉजी","एमआईटी"]},
+  {"id":"g06","question":"Why did Kalam not become a fighter pilot?","gold_pages":[6],"evidence_terms":["नौवें स्थान","आठ स्थान"]},
+  {"id":"g07","question":"What happened during the first SLV-III launch attempt in 1979?","gold_pages":[8],"evidence_terms":["1979","विफल","समुद्र"]},
+  {"id":"g08","question":"Which satellite did SLV-III place into orbit in July 1980?","gold_pages":[8,17,22],"evidence_terms":["रोहिणी","1980"]},
+  {"id":"g09","question":"What was Kalam's role in Pokhran-II?","gold_pages":[10,17],"evidence_terms":["वैज्ञानिक सलाहकार","डीआरडीओ","केंद्रीय संगठनात्मक भूमिका"]},
+  {"id":"g10","question":"What is the name of Kalam's autobiography?","gold_pages":[3,22],"evidence_terms":["अग्नि की उड़ान"]},
+  {"id":"g11","question":"Who co-wrote Wings of Fire and when was it published?","gold_pages":[3,17,22],"evidence_terms":["अरुण तिवारी","1999"]},
+  {"id":"g12","question":"When did Kalam receive the Bharat Ratna?","gold_pages":[16,17,20,22],"evidence_terms":["भारत रत्न","1997"]},
+  {"id":"g13","question":"Where did Kalam die in 2015?","gold_pages":[15,17,22],"evidence_terms":["शिलांग","2015"]},
+  {"id":"g14","question":"How did Kalam die?","gold_pages":[15],"evidence_terms":["व्याख्यान देते","गिर पड़े"]},
+  {"id":"g15","question":"Which institution did Kalam attend to study aeronautical engineering?","gold_pages":[6,20,22],"evidence_terms":["एमआईटी","चेन्नई"]},
+  {"id":"g16","question":"What position did Kalam hold during the Pokhran-II tests?","gold_pages":[10],"evidence_terms":["रक्षा मंत्री के वैज्ञानिक सलाहकार","डीआरडीओ"]},
+  {"id":"g17","question":"What did SLV-III place in orbit?","gold_pages":[8,17,20,22],"evidence_terms":["रोहिणी"]},
+  {"id":"g18","question":"In which year was Agni Ki Udaan published?","gold_pages":[3,17,22],"evidence_terms":["1999","अरुण तिवारी"]}
+]

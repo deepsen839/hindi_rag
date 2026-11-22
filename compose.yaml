@@ -1,0 +1,64 @@
+services:
+  api:
+    build: {context: ., dockerfile: Dockerfile}
+    image: megamindz-hindi-rag:chroma-cpu
+    container_name: megamindz-hindi-rag-api
+    command: ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
+    env_file: [.env]
+    environment:
+      HF_HOME: /models/huggingface
+      RAG_DEVICE: cpu
+      USE_FP16: "false"
+      TORCH_NUM_THREADS: "4"
+    ports: ["8000:8000"]
+    volumes:
+      - hf_cache:/models/huggingface
+      - ./artifacts:/app/artifacts
+      - ./data/processed:/app/data/processed
+    mem_limit: 12g
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+
+  pipeline:
+    image: megamindz-hindi-rag:chroma-cpu
+    build: {context: ., dockerfile: Dockerfile}
+    profiles: ["tools"]
+    env_file: [.env]
+    environment: {HF_HOME: /models/huggingface, RAG_DEVICE: cpu, USE_FP16: "false", TORCH_NUM_THREADS: "4"}
+    command: ["bash", "-lc", "python -m rag.ingest && python -m rag.index && python -m evaluation.evaluate_retrieval"]
+    volumes:
+      - ./:/app
+      - hf_cache:/models/huggingface
+    mem_limit: 12g
+
+  assignment:
+    image: megamindz-hindi-rag:chroma-cpu
+    profiles: ["tools"]
+    env_file: [.env]
+    environment: {HF_HOME: /models/huggingface, RAG_DEVICE: cpu, USE_FP16: "false", TORCH_NUM_THREADS: "4"}
+    command: ["python", "-m", "evaluation.run_assignment_queries"]
+    volumes:
+      - ./:/app
+      - hf_cache:/models/huggingface
+    mem_limit: 12g
+
+  ui:
+    image: megamindz-hindi-rag:chroma-cpu
+    profiles: ["ui"]
+    command: ["streamlit", "run", "app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    env_file: [.env]
+    environment: {HF_HOME: /models/huggingface, RAG_DEVICE: cpu, USE_FP16: "false", TORCH_NUM_THREADS: "4"}
+    ports: ["8501:8501"]
+    volumes:
+      - hf_cache:/models/huggingface
+      - ./artifacts:/app/artifacts
+      - ./data/processed:/app/data/processed
+    mem_limit: 12g
+
+volumes:
+  hf_cache:

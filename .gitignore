@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
+artifacts/chroma_db/
+artifacts/*.json
+artifacts/*.pkl
+data/processed/*.jsonl
+reports/*.json

@@ -1,0 +1,12 @@
+{
+  "source": "Agni_Ki_Udaan_Adhyayan_Sahayika_Hindi.pdf",
+  "pages_extracted": 22,
+  "paragraphs_detected": 132,
+  "table_rows_extracted": 31,
+  "chunks_created": 163,
+  "characters": 22641,
+  "chunks_path": "/app/data/processed/chunks.jsonl",
+  "note": "PDF text and table extraction are best-effort; inspect table_rows_extracted and extracted chunks.",
+  "citation_pages": "1-based physical PDF page numbers",
+  "unicode_normalization": "NFC"
+}
